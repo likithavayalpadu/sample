@@ -9,6 +9,7 @@ import com.example.libraryproject.repository.StudentRepo;
 
 @Service 
 public class StudentService {
+
     private final StudentRepo studentRepo;
 
     public StudentService(StudentRepo studentRepo) {
@@ -21,6 +22,14 @@ public class StudentService {
 
     public Student saveStudent(Student student){
         return studentRepo.save(student);
+
     }
-    
+     public String updateStudentName(Long id,String name){
+        Student student=studentRepo.findById(id)
+        .orElseThrow(() -> new RuntimeException("Student not found")); 
+        student.setName(name);
+        studentRepo.save(student);
+        return student.getName();
+      
+     }
 }

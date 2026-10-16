@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.example.libraryproject.entity.Library;
 import com.example.libraryproject.repository.LibraryRep;
 
-@Service 
+@Service
 public class LibraryService {
 
     private final LibraryRep libraryRep;
@@ -15,12 +15,14 @@ public class LibraryService {
     public LibraryService(LibraryRep libraryRep) {
         this.libraryRep = libraryRep;
     }
-    // save all library information
+
+    // Save all library information
     public List<Library> saveLibraries(List<Library> libraries) {
-    return libraryRep.saveAll(libraries);
-}
-    //get all library information
-    public List<Library> getAllLibraries(){
+        return libraryRep.saveAll(libraries);
+    }
+
+    // Get all library information
+    public List<Library> getAllLibraries() {
         return libraryRep.findAll();
     }
 }
