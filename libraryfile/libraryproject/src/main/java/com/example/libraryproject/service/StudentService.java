@@ -19,6 +19,13 @@ public class StudentService {
         return studentRepo.findAll();
         
     }
+    //Get student by id
+    public Student getStudentById(Long id){
+        return studentRepo.findById(id)
+        .orElseThrow(() -> 
+        new RuntimeException("Student not found" + id)
+    );
+    }
 
     public Student saveStudent(Student student){
         return studentRepo.save(student);
@@ -32,4 +39,12 @@ public class StudentService {
         return student.getName();
       
      }
+     public void deletestudet(Long id){
+        if (!studentRepo.existsById(id)) {
+            throw new RuntimeException("student not found with id:  "+id);
+        }
+        studentRepo.deleteById(id);
+     }
+
+     
 }

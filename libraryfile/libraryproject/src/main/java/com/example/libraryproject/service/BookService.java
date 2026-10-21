@@ -21,10 +21,24 @@ public BookService(BookRepos bookRepos) {
         return bookRepos.saveAll(book);
     }
     
-    //Get- get all books
+    //Get- get all bookss
     public List<Book> getAllBooks (){
         return bookRepos.findAll();
 
     }
     
+    /*Delete by  id (void)
+      public void deletById(Long id){
+        bookRepos.deleteById(id);}*/
+ 
+       //Delete byid (String)
+       public String deleteByid(Long id){
+        bookRepos.deleteById(id);
+        return "Book id deleted";
+    }    
 }
+    
+       
+
+    
+

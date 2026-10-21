@@ -2,6 +2,10 @@ package com.example.libraryproject.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,10 +38,23 @@ public class StudentController {
     public List<Student> getAllStudents(){
         return studentService.getAllStudents();
     }
+    @GetMapping("/getstd/{id}") 
+    public ResponseEntity<Student> getStudentByid(@PathVariable Long id ){
+        //Student student = studentService.getStudentById(id);
+        //return ResponseEntity.ok(student);
+        return ResponseEntity
+        .status(HttpStatus.ACCEPTED)
+        .body(studentService.getStudentById(id));
+    }
     @PutMapping("/{id}/name")
     public String updateStudentName(@PathVariable Long id,@RequestParam String name){
         return studentService.updateStudentName(id, name);
     }   
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletestudent(@PathVariable  Long id){
+        studentService.deletestudet(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
     
